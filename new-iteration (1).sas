@@ -452,3 +452,14 @@ run;
 %let outputTable = fcst_out;
 
 %vf_new_iteration(&host, &projectId, &outputCaslib, &outputTable);
+
+cas mySess;
+
+%let vfcaslib = Analytics_Project_&projectId;
+%put &vfcaslib;
+
+proc casutil;
+  list tables incaslib="&vfcaslib";
+quit;
+
+cas mySess terminate;
